@@ -1,29 +1,32 @@
 import Link from 'next/link';
 import { formatarUltimaRevisao } from '@/lib/datas';
 import type { Veiculo } from '@/types';
+import { IconePessoa, IconeRelogio } from './Icones';
 import Placa from './Placa';
 import StatusBadge from './StatusBadge';
 
 export default function CardVeiculo({ veiculo }: { veiculo: Veiculo }) {
   return (
-    <article className="card-veiculo">
-      <div className="card-topo">
-        <Placa placa={veiculo.placa} />
+    <article className={`card-veiculo card-veiculo--${veiculo.status.toLowerCase()}`}>
+      <div className="card-cabecalho">
+        <h2 className="card-modelo">{veiculo.modelo}</h2>
         <StatusBadge status={veiculo.status} />
       </div>
 
-      <h2 className="card-modelo">{veiculo.modelo}</h2>
+      <Placa placa={veiculo.placa} />
 
-      <dl className="card-dados">
-        <div>
-          <dt>Motorista</dt>
-          <dd>{veiculo.motorista}</dd>
-        </div>
-        <div>
-          <dt>Última revisão</dt>
-          <dd>{formatarUltimaRevisao(veiculo.ultimaRevisao)}</dd>
-        </div>
-      </dl>
+      <ul className="card-dados">
+        <li>
+          <IconePessoa />
+          <span className="visualmente-oculto">Motorista:</span>
+          {veiculo.motorista}
+        </li>
+        <li>
+          <IconeRelogio />
+          <span className="visualmente-oculto">Última revisão:</span>
+          {formatarUltimaRevisao(veiculo.ultimaRevisao)}
+        </li>
+      </ul>
 
       <Link
         href={`/checklist/${veiculo.id}`}

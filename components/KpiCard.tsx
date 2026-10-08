@@ -1,3 +1,5 @@
+import type { CSSProperties } from 'react';
+
 interface KpiCardProps {
   titulo: string;
   valor: string | number;
@@ -9,13 +11,17 @@ interface KpiCardProps {
 export default function KpiCard({ titulo, valor, detalhe, tom, progresso }: KpiCardProps) {
   return (
     <article className={`kpi kpi--${tom}`}>
-      <h2 className="kpi-titulo">{titulo}</h2>
-      <p className="kpi-valor">{valor}</p>
-      <p className="kpi-detalhe">{detalhe}</p>
+      <div className="kpi-texto">
+        <h2 className="kpi-titulo">{titulo}</h2>
+        <p className="kpi-valor">{valor}</p>
+        <p className="kpi-detalhe">{detalhe}</p>
+      </div>
       {progresso !== undefined && (
-        <div className="kpi-trilho" aria-hidden="true">
-          <span style={{ width: `${progresso}%` }} />
-        </div>
+        <div
+          className="kpi-anel"
+          style={{ '--progresso': `${progresso}%` } as CSSProperties}
+          aria-hidden="true"
+        />
       )}
     </article>
   );

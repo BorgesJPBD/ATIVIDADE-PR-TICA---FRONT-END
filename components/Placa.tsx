@@ -8,12 +8,13 @@ export default function Placa({ placa, tamanho = 'normal' }: PlacaProps) {
 
   return (
     <span className={classe} aria-label={`Placa ${placa}`}>
-      <span className="placa-faixa" aria-hidden="true">
-        <span className="placa-bandeira" />
-        BRASIL
+      <span className="placa-pais" aria-hidden="true">
+        BR
       </span>
       <span className="placa-letras" aria-hidden="true">
-        {placa}
+        {placa.slice(0, 3)}
+        <span className="placa-separador" />
+        {placa.slice(3)}
       </span>
     </span>
   );

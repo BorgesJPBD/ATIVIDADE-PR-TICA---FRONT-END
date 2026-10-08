@@ -13,15 +13,15 @@ export default function GraficoReprovacoes({ ranking }: { ranking: ItemRanking[]
           className="grafico-linha"
           aria-label={`${item}: ${percentual}% das reprovações (${quantidade})`}
         >
-          <span className="grafico-rotulo" aria-hidden="true">
-            {item}
-          </span>
+          <div className="grafico-topo" aria-hidden="true">
+            <span className="grafico-rotulo">{item}</span>
+            <span className="grafico-valor">
+              {percentual}% <small>{quantidade === 1 ? '1 vez' : `${quantidade} vezes`}</small>
+            </span>
+          </div>
           <div className="grafico-trilho" aria-hidden="true">
             <div className="grafico-barra" style={{ width: `${percentual}%` }} />
           </div>
-          <span className="grafico-valor" aria-hidden="true">
-            {percentual}% <small>({quantidade})</small>
-          </span>
         </li>
       ))}
     </ul>

@@ -36,7 +36,7 @@ export default function GaragemPage() {
           <h1 className="titulo-pagina">Garagem</h1>
           <p className="subtitulo-pagina">
             {contagem.pendentes > 0
-              ? `${contagem.pendentes} de ${contagem.total} veículos ainda precisam do checklist de hoje.`
+              ? `Faltam ${contagem.pendentes} checklists para fechar o dia.`
               : 'Todos os veículos já passaram pelo checklist de hoje.'}
           </p>
         </div>
@@ -44,23 +44,25 @@ export default function GaragemPage() {
 
       <ResumoFrota contagem={contagem} />
 
-      <label className="busca">
-        <span className="visualmente-oculto">Buscar veículo por placa ou modelo</span>
-        <IconeBusca />
-        <input
-          type="search"
-          placeholder="Buscar por placa ou modelo"
-          value={busca}
-          onChange={(evento) => setBusca(evento.target.value)}
-          autoComplete="off"
-        />
-      </label>
+      <div className="barra-busca">
+        <label className="busca">
+          <span className="visualmente-oculto">Buscar veículo por placa ou modelo</span>
+          <IconeBusca />
+          <input
+            type="search"
+            placeholder="Buscar por placa ou modelo"
+            value={busca}
+            onChange={(evento) => setBusca(evento.target.value)}
+            autoComplete="off"
+          />
+        </label>
 
-      <p className="busca-resultado" aria-live="polite">
-        {termo
-          ? `${veiculosFiltrados.length} de ${veiculos.length} veículos encontrados`
-          : `${veiculos.length} veículos na frota`}
-      </p>
+        <p className="busca-resultado" aria-live="polite">
+          {termo
+            ? `${veiculosFiltrados.length} de ${veiculos.length} veículos encontrados`
+            : `${veiculos.length} veículos na frota`}
+        </p>
+      </div>
 
       {veiculosFiltrados.length > 0 ? (
         <div className="grade-veiculos">

@@ -1,30 +1,23 @@
 import type { ContagemStatus } from '@/lib/frota';
 
 export default function ResumoFrota({ contagem }: { contagem: ContagemStatus }) {
-  const { aptos, inaptos, pendentes } = contagem;
+  const { aptos, inaptos, pendentes, total } = contagem;
+
+  const contadores = [
+    { classe: 'contador--apto', numero: aptos, rotulo: 'Aptos' },
+    { classe: 'contador--inapto', numero: inaptos, rotulo: 'Inaptos' },
+    { classe: 'contador--pendente', numero: pendentes, rotulo: 'Pendentes' },
+  ];
 
   return (
-    <section className="resumo-frota" aria-label="Situação da frota">
-      <div className="barra-frota" aria-hidden="true">
-        <span className="seg--apto" style={{ flexGrow: aptos }} />
-        <span className="seg--inapto" style={{ flexGrow: inaptos }} />
-        <span className="seg--pendente" style={{ flexGrow: pendentes }} />
-      </div>
-
-      <ul className="contadores">
-        <li className="contador contador--apto">
-          <span className="contador-numero">{aptos}</span>
-          <span className="contador-rotulo">Aptos</span>
+    <ul className="contadores" aria-label="Situação da frota">
+      {contadores.map((contador) => (
+        <li key={contador.rotulo} className={`contador ${contador.classe}`}>
+          <span className="contador-rotulo">{contador.rotulo}</span>
+          <span className="contador-numero">{contador.numero}</span>
+          <span className="contador-total">de {total}</span>
         </li>
-        <li className="contador contador--inapto">
-          <span className="contador-numero">{inaptos}</span>
-          <span className="contador-rotulo">Inaptos</span>
-        </li>
-        <li className="contador contador--pendente">
-          <span className="contador-numero">{pendentes}</span>
-          <span className="contador-rotulo">Pendentes</span>
-        </li>
-      </ul>
-    </section>
+      ))}
+    </ul>
   );
 }

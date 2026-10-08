@@ -4,7 +4,7 @@ import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import Carregando from '@/components/Carregando';
-import { IconeVoltar } from '@/components/Icones';
+import { IconePessoa, IconeVoltar } from '@/components/Icones';
 import Placa from '@/components/Placa';
 import SecaoChecklist from '@/components/SecaoChecklist';
 import StatusBadge from '@/components/StatusBadge';
@@ -78,23 +78,26 @@ export default function ChecklistPage() {
   };
 
   return (
-    <>
+    <div className="pagina-estreita">
       <Link href="/" className="voltar">
         <IconeVoltar />
-        Garagem
+        Voltar para a garagem
       </Link>
 
-      <div className="checklist-veiculo">
-        <Placa placa={veiculo.placa} tamanho="grande" />
-        <div>
-          <h1 className="titulo-pagina">{veiculo.modelo}</h1>
-          <p className="subtitulo-pagina">Motorista: {veiculo.motorista}</p>
+      <section className="checklist-veiculo" aria-label="Veículo selecionado">
+        <div className="ficha-info">
+          <h1 className="ficha-modelo">{veiculo.modelo}</h1>
+          <p className="ficha-motorista">
+            <IconePessoa />
+            {veiculo.motorista}
+          </p>
         </div>
-      </div>
+        <Placa placa={veiculo.placa} tamanho="grande" />
+      </section>
 
       <p className="instrucao">
-        Todos os itens começam marcados como OK. Desmarque o que estiver com problema: um único
-        item reprovado deixa o veículo Inapto.
+        Todos os itens começam como OK. Desligue o que estiver com problema: um único item reprovado
+        deixa o veículo Inapto.
       </p>
 
       <form className="formulario-checklist" onSubmit={finalizarRevisao}>
@@ -107,52 +110,52 @@ export default function ChecklistPage() {
           />
         ))}
 
-        <div className="campo">
-          <label htmlFor="observacoes" className="campo-rotulo">
-            Observações
-          </label>
-          <p className="campo-ajuda" id="observacoes-ajuda">
-            Descreva o problema encontrado ou qualquer detalhe para a manutenção.
-          </p>
-          <textarea
-            id="observacoes"
-            className="campo-texto"
-            aria-describedby="observacoes-ajuda"
-            placeholder="Ex.: pneu dianteiro direito com bolha na lateral"
-            value={observacoes}
-            onChange={(evento) => setObservacoes(evento.target.value)}
-          />
-        </div>
+        <section className="secao-registro" aria-label="Registro da revisão">
+          <div className="campo">
+            <label htmlFor="observacoes" className="campo-rotulo">
+              Observações
+            </label>
+            <p className="campo-ajuda" id="observacoes-ajuda">
+              Descreva o problema encontrado ou qualquer detalhe para a manutenção.
+            </p>
+            <textarea
+              id="observacoes"
+              className="campo-texto"
+              aria-describedby="observacoes-ajuda"
+              placeholder="Ex.: pneu dianteiro direito com bolha na lateral"
+              value={observacoes}
+              onChange={(evento) => setObservacoes(evento.target.value)}
+            />
+          </div>
 
-        <div className="campo">
-          <label htmlFor="foto-hodometro" className="campo-rotulo">
-            Foto do hodômetro
-          </label>
-          <p className="campo-ajuda" id="foto-ajuda">
-            Fotografe o painel mostrando a quilometragem atual.
-          </p>
-          <input
-            id="foto-hodometro"
-            type="file"
-            accept="image/*"
-            className="campo-arquivo"
-            aria-describedby="foto-ajuda"
-            onChange={escolherFoto}
-          />
-          {foto && (
-            <div className="foto-previa">
-              <img src={foto.url} alt="Prévia da foto do hodômetro" />
-              <span>{foto.nome}</span>
-            </div>
-          )}
-        </div>
+          <div className="campo">
+            <label htmlFor="foto-hodometro" className="campo-rotulo">
+              Foto do hodômetro
+            </label>
+            <p className="campo-ajuda" id="foto-ajuda">
+              Fotografe o painel mostrando a quilometragem atual.
+            </p>
+            <input
+              id="foto-hodometro"
+              type="file"
+              accept="image/*"
+              className="campo-arquivo"
+              aria-describedby="foto-ajuda"
+              onChange={escolherFoto}
+            />
+            {foto && (
+              <div className="foto-previa">
+                <img src={foto.url} alt="Prévia da foto do hodômetro" />
+                <span>{foto.nome}</span>
+              </div>
+            )}
+          </div>
+        </section>
 
-        <div
-          className={status === 'Inapto' ? 'barra-acoes barra-acoes--inapto' : 'barra-acoes'}
-        >
+        <div className={status === 'Inapto' ? 'barra-acoes barra-acoes--inapto' : 'barra-acoes'}>
           <div className="resultado" aria-live="polite">
             <span className="resultado-linha">
-              Status do veículo: <StatusBadge status={status} />
+              Resultado <StatusBadge status={status} />
             </span>
             <span className="resultado-detalhe">
               {status === 'Apto'
@@ -165,6 +168,6 @@ export default function ChecklistPage() {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

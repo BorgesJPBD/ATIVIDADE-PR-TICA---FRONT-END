@@ -1,17 +1,21 @@
 import type { Metadata, Viewport } from 'next';
+import '@fontsource/barlow/400.css';
+import '@fontsource/barlow/500.css';
+import '@fontsource/barlow/600.css';
+import '@fontsource/barlow/700.css';
 import Header from '@/components/Header';
 import { FrotaProvider } from '@/context/FrotaContext';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Checklist de Frota',
+  title: 'Saída Segura',
   description: 'Checklist diário de revisão veicular antes da saída do pátio.',
 };
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1b3f95',
+  themeColor: '#0d5c63',
 };
 
 const scriptTema = `(function(){try{var t=localStorage.getItem('tema');if(t!=='claro'&&t!=='escuro'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'escuro':'claro'}document.documentElement.dataset.tema=t}catch(e){}})();`;

@@ -41,7 +41,7 @@ export default function RelatoriosPage() {
           <h1 className="titulo-pagina">Painel da frota</h1>
           <p className="subtitulo-pagina">{dataDeHojePorExtenso()}</p>
         </div>
-        <button type="button" className="botao botao--secundario" onClick={exportarPdf}>
+        <button type="button" className="botao botao--primario" onClick={exportarPdf}>
           Exportar PDF
         </button>
       </div>
@@ -69,18 +69,6 @@ export default function RelatoriosPage() {
       </section>
 
       <div className="paineis">
-        <section className="painel" aria-labelledby="titulo-historico">
-          <div className="painel-cabecalho">
-            <h2 className="titulo-secao" id="titulo-historico">
-              Histórico de Revisões de Hoje
-            </h2>
-            <p className="descricao-secao">
-              {revisoesHoje.length} {revisoesHoje.length === 1 ? 'checklist finalizado' : 'checklists finalizados'}
-            </p>
-          </div>
-          <TabelaRevisoes revisoes={revisoesHoje} />
-        </section>
-
         <section className="painel" aria-labelledby="titulo-grafico">
           <div className="painel-cabecalho">
             <h2 className="titulo-secao" id="titulo-grafico">
@@ -89,6 +77,19 @@ export default function RelatoriosPage() {
             <p className="descricao-secao">Participação de cada item nas reprovações de hoje</p>
           </div>
           <GraficoReprovacoes ranking={ranking} />
+        </section>
+
+        <section className="painel" aria-labelledby="titulo-historico">
+          <div className="painel-cabecalho">
+            <h2 className="titulo-secao" id="titulo-historico">
+              Histórico de Revisões de Hoje
+            </h2>
+            <p className="descricao-secao">
+              {revisoesHoje.length}{' '}
+              {revisoesHoje.length === 1 ? 'checklist finalizado' : 'checklists finalizados'}
+            </p>
+          </div>
+          <TabelaRevisoes revisoes={revisoesHoje} />
         </section>
       </div>
 

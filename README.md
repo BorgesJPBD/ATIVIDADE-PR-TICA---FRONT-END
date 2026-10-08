@@ -1,6 +1,8 @@
-# Checklist de Frota
+# Saída Segura
 
 Protótipo front-end de um sistema de checklist diário de revisão veicular, feito em **Next.js (App Router) + TypeScript**, com dados mockados. Sem back-end: o estado fica em um Context do React e é salvo no `localStorage` para não se perder ao trocar de tela ou recarregar.
+
+A fonte Barlow vem do pacote `@fontsource/barlow`, instalado junto com as outras dependências, então o projeto funciona sem internet.
 
 ## Como rodar
 
@@ -32,10 +34,10 @@ app/
   relatorios/page.tsx     Tela 3
 components/
   CardVeiculo.tsx         Card de veículo da garagem
-  ItemChecklist.tsx       Um item (checkbox) do checklist
+  ItemChecklist.tsx       Um item do checklist (checkbox com visual de interruptor)
   SecaoChecklist.tsx      Seção do checklist com contagem "x de y OK"
   StatusBadge.tsx         Selo verde / vermelho / amarelo
-  Placa.tsx               Placa no padrão Mercosul
+  Placa.tsx               Placa do veículo
   ResumoFrota.tsx         Contadores do topo da garagem
   KpiCard.tsx             Card de indicador
   GraficoReprovacoes.tsx  Gráfico de barras só com divs (width em %)

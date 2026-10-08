@@ -21,9 +21,11 @@ export default function Header() {
   return (
     <header className="topo">
       <div className="container topo-interno">
-        <Link href="/" className="marca" aria-label="Checklist de Frota, ir para a garagem">
-          <IconeMarca />
-          <span className="marca-texto">Checklist de Frota</span>
+        <Link href="/" className="marca" aria-label="Saída Segura, ir para a garagem">
+          <span className="marca-icone">
+            <IconeMarca />
+          </span>
+          <span className="marca-texto">Saída Segura</span>
         </Link>
 
         <nav className="nav" aria-label="Principal">
