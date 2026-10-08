@@ -8,8 +8,10 @@ import type { ResultadoChecklist, Revisao, Veiculo } from '@/types';
 
 const CHAVE_STORAGE = 'checklist-frota:v1';
 
+const veiculosIniciais = mockVeiculos as Veiculo[];
+const revisoesIniciais = mockRevisoes as Revisao[];
+
 interface DadosSalvos {
-  /** Dia em que os dados foram salvos: num dia novo, voltamos ao mock */
   dia: string;
   veiculos: Veiculo[];
   revisoes: Revisao[];
@@ -26,7 +28,6 @@ export interface NovoChecklist {
 interface FrotaContextValue {
   veiculos: Veiculo[];
   revisoes: Revisao[];
-  /** true depois de ler o localStorage (evita piscar dados errados) */
   pronto: boolean;
   salvarChecklist: (dados: NovoChecklist) => void;
   restaurarDados: () => void;
@@ -35,11 +36,10 @@ interface FrotaContextValue {
 const FrotaContext = createContext<FrotaContextValue | null>(null);
 
 export function FrotaProvider({ children }: { children: React.ReactNode }) {
-  const [veiculos, setVeiculos] = useState<Veiculo[]>(mockVeiculos);
-  const [revisoes, setRevisoes] = useState<Revisao[]>(mockRevisoes);
+  const [veiculos, setVeiculos] = useState<Veiculo[]>(veiculosIniciais);
+  const [revisoes, setRevisoes] = useState<Revisao[]>(revisoesIniciais);
   const [pronto, setPronto] = useState(false);
 
-  // 1) Ao abrir o app, recupera o que foi salvo hoje no localStorage
   useEffect(() => {
     try {
       const texto = localStorage.getItem(CHAVE_STORAGE);
@@ -50,21 +50,16 @@ export function FrotaProvider({ children }: { children: React.ReactNode }) {
           setRevisoes(salvo.revisoes);
         }
       }
-    } catch {
-      // localStorage indisponível ou corrompido: segue com o mock
-    }
+    } catch {}
     setPronto(true);
   }, []);
 
-  // 2) Sempre que algo muda, salva no localStorage para persistir entre as telas
   useEffect(() => {
     if (!pronto) return;
     try {
       const dados: DadosSalvos = { dia: chaveDoDia(), veiculos, revisoes };
       localStorage.setItem(CHAVE_STORAGE, JSON.stringify(dados));
-    } catch {
-      // sem persistência, mas o estado em memória continua funcionando
-    }
+    } catch {}
   }, [pronto, veiculos, revisoes]);
 
   function salvarChecklist(dados: NovoChecklist) {
@@ -86,7 +81,6 @@ export function FrotaProvider({ children }: { children: React.ReactNode }) {
       fotoHodometro: dados.fotoHodometro,
     };
 
-    // Atualiza o status do veículo e registra a revisão no histórico
     setVeiculos((atuais) =>
       atuais.map((v) =>
         v.id === veiculo.id ? { ...v, status: dados.status, ultimaRevisao: agora } : v,
@@ -96,8 +90,8 @@ export function FrotaProvider({ children }: { children: React.ReactNode }) {
   }
 
   function restaurarDados() {
-    setVeiculos(mockVeiculos);
-    setRevisoes(mockRevisoes);
+    setVeiculos(veiculosIniciais);
+    setRevisoes(revisoesIniciais);
   }
 
   return (

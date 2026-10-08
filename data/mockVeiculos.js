@@ -1,9 +1,5 @@
 import { diasAtras, hojeAs } from '../lib/datas';
 
-// Frota mockada: 10 veículos da empresa.
-// As datas são relativas a "hoje" para o protótipo sempre parecer atual.
-
-/** @type {import('../types').Veiculo[]} */
 export const mockVeiculos = [
   {
     id: 1,

@@ -14,7 +14,6 @@ export const viewport: Viewport = {
   themeColor: '#1b3f95',
 };
 
-// Aplica o tema salvo antes da página aparecer (evita piscar o tema claro)
 const scriptTema = `(function(){try{var t=localStorage.getItem('tema');if(t!=='claro'&&t!=='escuro'){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'escuro':'claro'}document.documentElement.dataset.tema=t}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

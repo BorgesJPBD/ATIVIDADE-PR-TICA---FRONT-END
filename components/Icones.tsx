@@ -1,5 +1,3 @@
-// Ícones SVG simples (sem biblioteca externa)
-
 interface IconeProps {
   tamanho?: number;
 }

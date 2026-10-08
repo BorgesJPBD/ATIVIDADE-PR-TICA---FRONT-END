@@ -1,6 +1,3 @@
-// Itens do checklist diário, divididos em 3 seções (12 itens no total).
-
-/** @type {import('../types').SecaoVerificacao[]} */
 export const secoesChecklist = [
   {
     id: 'documentacao',

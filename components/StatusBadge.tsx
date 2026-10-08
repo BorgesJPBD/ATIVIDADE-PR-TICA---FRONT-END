@@ -1,12 +1,11 @@
 import type { StatusVeiculo } from '@/types';
 
 const classes: Record<StatusVeiculo, string> = {
-  Apto: 'selo selo--apto', // verde
-  Inapto: 'selo selo--inapto', // vermelho
-  Pendente: 'selo selo--pendente', // amarelo
+  Apto: 'selo selo--apto',
+  Inapto: 'selo selo--inapto',
+  Pendente: 'selo selo--pendente',
 };
 
-/** Selo colorido do status: Verde = Apto, Vermelho = Inapto, Amarelo = Pendente */
 export default function StatusBadge({ status }: { status: StatusVeiculo }) {
   return <span className={classes[status]}>{status}</span>;
 }

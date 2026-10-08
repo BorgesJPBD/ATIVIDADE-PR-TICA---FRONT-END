@@ -8,22 +8,18 @@ import ResumoFrota from '@/components/ResumoFrota';
 import { useFrota } from '@/context/FrotaContext';
 import { contarPorStatus } from '@/lib/frota';
 
-/** Remove espaços, hífen etc. para "rta-2f45" encontrar "RTA2F45" */
 function normalizarPlaca(texto: string) {
   return texto.toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
-// TELA 1 - Garagem / Lista de veículos
 export default function GaragemPage() {
   const { veiculos, pronto } = useFrota();
   const [busca, setBusca] = useState('');
 
   if (!pronto) return <Carregando />;
 
-  // Contadores calculados a partir do array
   const contagem = contarPorStatus(veiculos);
 
-  // Filtro em tempo real por placa ou modelo
   const termo = busca.trim().toLowerCase();
   const veiculosFiltrados = veiculos.filter((veiculo) => {
     if (!termo) return true;

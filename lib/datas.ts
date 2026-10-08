@@ -1,6 +1,3 @@
-// Funções de data usadas pelos mocks e pelas telas.
-
-/** Chave do dia no fuso local, no formato AAAA-MM-DD */
 export function chaveDoDia(data: Date = new Date()): string {
   const ano = data.getFullYear();
   const mes = String(data.getMonth() + 1).padStart(2, '0');
@@ -8,7 +5,6 @@ export function chaveDoDia(data: Date = new Date()): string {
   return `${ano}-${mes}-${dia}`;
 }
 
-/** Data ISO de hoje no horário informado, ex.: hojeAs('06:42') */
 export function hojeAs(hora: string): string {
   const [h, m] = hora.split(':').map(Number);
   const data = new Date();
@@ -16,7 +12,6 @@ export function hojeAs(hora: string): string {
   return data.toISOString();
 }
 
-/** Data ISO de N dias atrás no horário informado */
 export function diasAtras(dias: number, hora = '17:30'): string {
   const [h, m] = hora.split(':').map(Number);
   const data = new Date();
@@ -33,7 +28,6 @@ export function formatarHora(iso: string): string {
   return new Date(iso).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
 }
 
-/** "Hoje às 06:42", "Ontem às 17:30" ou "05/10 às 17:30" */
 export function formatarUltimaRevisao(iso: string): string {
   const data = new Date(iso);
   const ontem = new Date();
@@ -45,7 +39,6 @@ export function formatarUltimaRevisao(iso: string): string {
   return `${dia} às ${formatarHora(iso)}`;
 }
 
-/** "Quarta-feira, 7 de outubro" */
 export function dataDeHojePorExtenso(): string {
   const texto = new Date().toLocaleDateString('pt-BR', {
     weekday: 'long',

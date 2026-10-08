@@ -7,7 +7,6 @@ export interface ContagemStatus {
   pendentes: number;
 }
 
-/** Contadores calculados a partir do array de veículos (nada chumbado). */
 export function contarPorStatus(veiculos: Veiculo[]): ContagemStatus {
   return {
     total: veiculos.length,

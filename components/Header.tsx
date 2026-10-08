@@ -14,7 +14,6 @@ export default function Header() {
   const pathname = usePathname();
 
   function estaAtivo(href: string) {
-    // O checklist faz parte do fluxo da Garagem
     if (href === '/') return pathname === '/' || pathname.startsWith('/checklist');
     return pathname.startsWith(href);
   }

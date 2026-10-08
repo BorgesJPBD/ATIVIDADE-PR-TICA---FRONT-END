@@ -3,7 +3,6 @@ interface PlacaProps {
   tamanho?: 'pequena' | 'normal' | 'grande';
 }
 
-/** Placa no padrão Mercosul */
 export default function Placa({ placa, tamanho = 'normal' }: PlacaProps) {
   const classe = tamanho === 'normal' ? 'placa' : `placa placa--${tamanho}`;
 

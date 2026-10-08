@@ -1,6 +1,5 @@
 import type { ItemRanking } from '@/lib/checklist';
 
-/** Gráfico de barras sem biblioteca: cada barra é uma div com width em % */
 export default function GraficoReprovacoes({ ranking }: { ranking: ItemRanking[] }) {
   if (ranking.length === 0) {
     return <p className="sem-dados">Nenhum item reprovado hoje.</p>;

@@ -2,7 +2,6 @@ import type { ItemVerificacao } from '@/types';
 
 interface ItemChecklistProps {
   item: ItemVerificacao;
-  /** true = marcado (OK) | false = desmarcado (reprovado) */
   aprovado: boolean;
   onAlterar: (itemId: string, aprovado: boolean) => void;
 }

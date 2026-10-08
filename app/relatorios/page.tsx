@@ -9,18 +9,15 @@ import { calcularRankingReprovacoes } from '@/lib/checklist';
 import { dataDeHojePorExtenso, ehHoje } from '@/lib/datas';
 import { contarPorStatus } from '@/lib/frota';
 
-// TELA 3 - Painel do Gestor de Frota
 export default function RelatoriosPage() {
   const { veiculos, revisoes, pronto, restaurarDados } = useFrota();
 
   if (!pronto) return <Carregando />;
 
-  // KPIs calculados a partir dos dados (nada chumbado)
   const contagem = contarPorStatus(veiculos);
   const percentualApta =
     contagem.total > 0 ? Math.round((contagem.aptos / contagem.total) * 100) : 0;
 
-  // Histórico de hoje, do mais recente para o mais antigo
   const revisoesHoje = revisoes
     .filter((revisao) => ehHoje(revisao.dataHora))
     .sort((a, b) => b.dataHora.localeCompare(a.dataHora));

@@ -5,7 +5,6 @@ import { IconeLua, IconeSol } from './Icones';
 
 type Tema = 'claro' | 'escuro';
 
-/** Botão de Dark Mode: troca o atributo data-tema do <html> e lembra a escolha */
 export default function BotaoTema() {
   const [tema, setTema] = useState<Tema | null>(null);
 
@@ -18,9 +17,7 @@ export default function BotaoTema() {
     document.documentElement.dataset.tema = novoTema;
     try {
       localStorage.setItem('tema', novoTema);
-    } catch {
-      // sem localStorage o tema vale só até recarregar
-    }
+    } catch {}
     setTema(novoTema);
   }
 

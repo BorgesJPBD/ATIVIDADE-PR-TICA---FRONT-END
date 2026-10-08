@@ -19,7 +19,6 @@ interface FotoSelecionada {
 
 const totalItens = secoesChecklist.reduce((soma, secao) => soma + secao.itens.length, 0);
 
-// TELA 2 - Formulário de Checklist
 export default function ChecklistPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -29,7 +28,6 @@ export default function ChecklistPage() {
   const [observacoes, setObservacoes] = useState('');
   const [foto, setFoto] = useState<FotoSelecionada | null>(null);
 
-  // Libera a prévia da foto da memória quando ela muda ou a tela fecha
   useEffect(() => {
     return () => {
       if (foto) URL.revokeObjectURL(foto.url);
@@ -52,7 +50,6 @@ export default function ChecklistPage() {
     );
   }
 
-  // Status recalculado a cada clique: 1 item desmarcado = Inapto
   const status = calcularStatus(respostas);
   const reprovados = listarItensReprovados(secoesChecklist, respostas);
 
@@ -144,7 +141,6 @@ export default function ChecklistPage() {
           />
           {foto && (
             <div className="foto-previa">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={foto.url} alt="Prévia da foto do hodômetro" />
               <span>{foto.nome}</span>
             </div>

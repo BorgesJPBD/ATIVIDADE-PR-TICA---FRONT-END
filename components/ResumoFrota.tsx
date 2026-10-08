@@ -1,6 +1,5 @@
 import type { ContagemStatus } from '@/lib/frota';
 
-/** Contadores do topo da Garagem + barra com a proporção da frota */
 export default function ResumoFrota({ contagem }: { contagem: ContagemStatus }) {
   const { aptos, inaptos, pendentes } = contagem;
 

@@ -3,7 +3,6 @@ interface KpiCardProps {
   valor: string | number;
   detalhe: string;
   tom: 'apto' | 'inapto' | 'pendente';
-  /** Opcional: mostra uma barrinha de progresso (0 a 100) */
   progresso?: number;
 }
 

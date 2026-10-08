@@ -1,6 +1,3 @@
-/* =========================================================
-   Tokens de cor e tipografia (tema claro e escuro)
-   ========================================================= */
 :root {
   --fundo: #eceff3;
   --superficie: #ffffff;
@@ -61,9 +58,6 @@
   color-scheme: dark;
 }
 
-/* =========================================================
-   Base
-   ========================================================= */
 *,
 *::before,
 *::after {
@@ -125,9 +119,6 @@ a {
   border: 0;
 }
 
-/* =========================================================
-   Header
-   ========================================================= */
 .topo {
   position: sticky;
   top: 0;
@@ -205,9 +196,6 @@ a {
   }
 }
 
-/* =========================================================
-   Títulos de página
-   ========================================================= */
 .cabecalho-pagina {
   display: flex;
   flex-wrap: wrap;
@@ -245,9 +233,6 @@ a {
   text-align: center;
 }
 
-/* =========================================================
-   Botões
-   ========================================================= */
 .botao {
   display: inline-flex;
   align-items: center;
@@ -306,9 +291,6 @@ a {
   font-size: 1.05rem;
 }
 
-/* =========================================================
-   Placa Mercosul
-   ========================================================= */
 .placa {
   display: inline-flex;
   flex-direction: column;
@@ -361,9 +343,6 @@ a {
   font-size: 1.4rem;
 }
 
-/* =========================================================
-   Selo de status
-   ========================================================= */
 .selo {
   display: inline-flex;
   align-items: center;
@@ -390,9 +369,6 @@ a {
   color: var(--pendente-texto);
 }
 
-/* =========================================================
-   Tela 1: resumo da frota, busca e cards
-   ========================================================= */
 .resumo-frota {
   margin-bottom: 20px;
   padding: 16px;
@@ -593,9 +569,6 @@ a {
   color: var(--texto-suave);
 }
 
-/* =========================================================
-   Tela 2: checklist
-   ========================================================= */
 .voltar {
   display: inline-flex;
   align-items: center;
@@ -872,9 +845,6 @@ a {
   }
 }
 
-/* =========================================================
-   Tela 3: relatórios
-   ========================================================= */
 .kpis {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -963,7 +933,6 @@ a {
   margin-bottom: 14px;
 }
 
-/* Gráfico de barras feito só com divs (width em %) */
 .grafico {
   display: grid;
   gap: 14px;
@@ -1037,7 +1006,6 @@ a {
   color: var(--texto-suave);
 }
 
-/* Tabela de histórico */
 .tabela-rolagem {
   overflow-x: auto;
 }
